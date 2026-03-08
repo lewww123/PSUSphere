@@ -22,9 +22,9 @@
 
                         <!-- Search -->
                         <div class="col-md-6">
-                            <form class="navbar-left navbar-form nav-search mr-md-3">
+                            <form class="navbar-left navbar-form nav-search mr-md-3" method="get">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Search..." class="form-control">
+                                    <input type="text" name="q" placeholder="Search..." class="form-control" value="{{ request.GET.q }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-search search-icon"></i>
@@ -34,13 +34,22 @@
                             </form>
                         </div>
 
-                        <!-- Add Button -->
-                        <div class="col-md-6">
-                            <div class="pull-right">
-                                <a href="{% url 'program-add' %}" class="btn btn-success btn-rounded">
-                                    Add Program
-                                </a>
-                            </div>
+                        <!-- Sort -->
+                        <div class="col-md-12">
+                            <form method="get" class="row g-2 align-items-center">
+                                <div class="col-auto">
+                                    <label for="smallSelect" class="col-form-label">Sort by</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                        <option value="prog_name" {% if request.GET.sort_by == 'prog_name' %}selected{% endif %}>Program Name</option>
+                                        <option value="college__college_name" {% if request.GET.sort_by == 'college__college_name' %}selected{% endif %}>College</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                                </div>
+                            </form>
                         </div>
 
                     </div>
@@ -58,20 +67,15 @@
                             </thead>
 
                             <tbody>
-
                                 {% for object in object_list %}
                                 <tr>
-
                                     <td>{{ object.prog_name }}</td>
                                     <td>{{ object.college }}</td>
-
                                     <td>
                                         <a href="program_list/{{ object.id }}">Edit</a> |
                                         <a href="program_list/{{ object.id }}/delete" class="text-danger">Delete</a>
                                     </td>
-
                                 </tr>
-
                                 {% empty %}
                                 <tr>
                                     <td colspan="3" style="text-align:center;">
@@ -79,7 +83,6 @@
                                     </td>
                                 </tr>
                                 {% endfor %}
-
                             </tbody>
 
                         </table>
