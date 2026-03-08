@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="content">
     <div class="container-fluid">
@@ -33,8 +32,8 @@
 
                         <div class="col-md-6">
                             <div class="pull-right">
-                                <a href="{% url 'organization-add' %}" class="btn btn-success btn-rounded">
-                                    Add Organization
+                                <a href="{% url 'organization-add' %}" class="btn btn-success btn-rounded"> 
+                                    Add Organization                                                                                                            
                                 </a>
                             </div>
                         </div>
@@ -47,6 +46,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">College</th>
                                     <th scope="col">Description</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,6 +55,14 @@
                                     <td>{{ object.name }}</td>
                                     <td>{{ object.college }}</td>
                                     <td>{{ object.description }}</td>
+                                    <td><a href="organization_list/{{ object.id }}">Edit</a></td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4" style="text-align: center">
+                                            <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                                        </td>
+                                    </tr>
                                 </tr>
                                 {% endfor %}
                             </tbody>
