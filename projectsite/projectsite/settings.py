@@ -27,32 +27,24 @@ SECRET_KEY = 'django-insecure-7p5okbmdyggibjak+nspfsou5qyt&ua6_ia1r3rg_z51+5#y@v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Email verification
 ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_REQUIRED = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+# Allauth settings (new API)
+ACCOUNT_LOGIN_METHODS = {'email', 'username'}  # allow login with username OR email
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
 
+# Django settings
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'psusphere.pythonanywhere.com']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/accounts/login/' # where @login_required will send users
-LOGIN_REDIRECT_URL = '/' # where to go after successful login
-LOGOUT_REDIRECT_URL = '/accounts/login/' # after logouta, go back to login
+LOGIN_URL = '/accounts/login/'  # where @login_required will send users
+LOGIN_REDIRECT_URL = '/'  # where to go after successful login
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # after logout, go back to login
 
-ACCOUNT_LOGOUT_REDIRECT_URL = '/' # where to redirect after logout
-ACCOUNT_LOGOUT_ON_GET = True # logout immediately on GET
-
-ACCOUNT_LOGIN_METHODS = {"username", "email"} # allow login with username OR email
-
-ACCOUNT_SIGNUP_FIELDS = [
-"username*",
-"email*",
-"password1*",
-"password2*",
-]
+# Allauth redirects
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # where to redirect after logout
+ACCOUNT_LOGOUT_ON_GET = True  # logout immediately on GET
 
 # Application definition
 
