@@ -36,7 +36,7 @@ ACCOUNT_LOGIN_METHODS = {'email', 'username'}  # allow login with username OR em
 ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
 
 # Django settings
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'psusphere.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'psuspherelc.pythonanywhere.com']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/accounts/login/'  # where @login_required will send users
 LOGIN_REDIRECT_URL = '/'  # where to go after successful login
